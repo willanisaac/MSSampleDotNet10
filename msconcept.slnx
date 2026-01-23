@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MSConcept.API/MSConcept.API.csproj" />
+    <Project Path="src/MSConcept.Application/MSConcept.Application.csproj" />
+    <Project Path="src/MSConcept.Domain/MSConcept.Domain.csproj" />
+    <Project Path="src/MSConcept.Infrastructure/MSConcept.Infrastructure.csproj" />
+  </Folder>
+</Solution>
