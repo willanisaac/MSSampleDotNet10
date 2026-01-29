@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  bff-api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: bff-api
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - GraphQLServices__UsersServiceUrl=http://users-service:5001
+      - GraphQLServices__OrdersServiceUrl=http://orders-service:5002
+      - GraphQLServices__PaymentsServiceUrl=http://payments-service:5003
+      - GraphQLServices__TimeoutSeconds=30
+      - GraphQLServices__RetryCount=3
+    networks:
+      - bff-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  bff-network:
+    driver: bridge
