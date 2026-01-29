@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BFF.API/BFF.API.csproj" />
+    <Project Path="src/BFF.Application/BFF.Application.csproj" />
+    <Project Path="src/BFF.Domain/BFF.Domain.csproj" />
+    <Project Path="src/BFF.Infrastructure/BFF.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BFF.API.Tests/BFF.API.Tests.csproj" />
+    <Project Path="tests/BFF.Application.Tests/BFF.Application.Tests.csproj" />
+    <Project Path="tests/BFF.Infrastructure.Tests/BFF.Infrastructure.Tests.csproj" />
+  </Folder>
+</Solution>
