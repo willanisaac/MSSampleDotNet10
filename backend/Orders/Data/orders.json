@@ -1,0 +1,64 @@
+[
+  {
+    "id": "o1",
+    "userId": "u1",
+    "status": "Completed",
+    "totalAmount": 258.00,
+    "items": [
+      {
+        "productId": "p-100",
+        "productName": "Noise-Cancelling Headphones",
+        "quantity": 1,
+        "price": 199.00,
+        "subtotal": 199.00
+      },
+      {
+        "productId": "p-200",
+        "productName": "USB-C Hub",
+        "quantity": 1,
+        "price": 59.00,
+        "subtotal": 59.00
+      }
+    ],
+    "createdAt": "2025-01-18T13:20:00Z"
+  },
+  {
+    "id": "o2",
+    "userId": "u1",
+    "status": "Pending",
+    "totalAmount": 45.00,
+    "items": [
+      {
+        "productId": "p-300",
+        "productName": "Laptop Stand",
+        "quantity": 1,
+        "price": 45.00,
+        "subtotal": 45.00
+      }
+    ],
+    "createdAt": "2025-01-20T10:05:00Z"
+  },
+  {
+    "id": "o3",
+    "userId": "u2",
+    "status": "Cancelled",
+    "totalAmount": 120.00,
+    "items": [
+      {
+        "productId": "p-400",
+        "productName": "Wireless Keyboard",
+        "quantity": 1,
+        "price": 60.00,
+        "subtotal": 60.00
+      },
+      {
+        "productId": "p-500",
+        "productName": "Wireless Mouse",
+        "quantity": 1,
+        "price": 60.00,
+        "subtotal": 60.00
+      }
+    ],
+    "createdAt": "2025-01-22T16:40:00Z"
+  }
+]

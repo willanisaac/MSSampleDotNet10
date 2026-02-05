@@ -1,0 +1,29 @@
+[
+  {
+    "id": "pay-1",
+    "orderId": "o1",
+    "amount": 258.00,
+    "status": "Completed",
+    "paymentMethod": "CreditCard",
+    "transactionId": "txn-1001",
+    "createdAt": "2025-01-18T13:25:00Z"
+  },
+  {
+    "id": "pay-2",
+    "orderId": "o2",
+    "amount": 45.00,
+    "status": "Pending",
+    "paymentMethod": "CreditCard",
+    "transactionId": "txn-1002",
+    "createdAt": "2025-01-20T10:06:00Z"
+  },
+  {
+    "id": "pay-3",
+    "orderId": "o3",
+    "amount": 120.00,
+    "status": "Refunded",
+    "paymentMethod": "BankTransfer",
+    "transactionId": "txn-1003",
+    "createdAt": "2025-01-22T17:00:00Z"
+  }
+]
