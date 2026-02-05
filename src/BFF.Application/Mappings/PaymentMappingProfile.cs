@@ -13,6 +13,9 @@ public class PaymentMappingProfile : Profile
         // GraphQL to Domain
         CreateMap<PaymentGraphQL, Payment>();
         
+        // GraphQL to Response (Direct mapping)
+        CreateMap<PaymentGraphQL, PaymentResponse>();
+        
         // Domain to Response
         CreateMap<Payment, PaymentResponse>();
         

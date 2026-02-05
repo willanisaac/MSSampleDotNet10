@@ -13,6 +13,9 @@ public class UserMappingProfile : Profile
         // GraphQL to Domain
         CreateMap<UserGraphQL, User>();
         
+        // GraphQL to Response (Direct mapping)
+        CreateMap<UserGraphQL, UserResponse>();
+        
         // Domain to Response
         CreateMap<User, UserResponse>();
         

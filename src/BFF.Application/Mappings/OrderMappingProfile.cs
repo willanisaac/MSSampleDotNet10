@@ -14,6 +14,10 @@ public class OrderMappingProfile : Profile
         CreateMap<OrderGraphQL, Order>();
         CreateMap<OrderItemGraphQL, OrderItem>();
         
+        // GraphQL to Response (Direct mapping)
+        CreateMap<OrderGraphQL, OrderResponse>();
+        CreateMap<OrderItemGraphQL, OrderItemResponse>();
+        
         // Domain to Response
         CreateMap<Order, OrderResponse>();
         CreateMap<OrderItem, OrderItemResponse>();
