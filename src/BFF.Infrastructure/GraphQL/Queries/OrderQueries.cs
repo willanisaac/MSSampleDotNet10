@@ -3,8 +3,8 @@ namespace BFF.Infrastructure.GraphQL.Queries;
 public static class OrderQueries
 {
     public const string GetOrderById = @"
-        query GetOrder($id: ID!) {
-            order(id: $id) {
+        query GetOrder($id: String!) {
+            getOrder(id: $id) {
                 id
                 userId
                 status
@@ -21,8 +21,8 @@ public static class OrderQueries
         }";
 
     public const string GetOrdersByUser = @"
-        query GetOrdersByUser($userId: ID!) {
-            orders(userId: $userId) {
+        query GetOrdersByUser($userId: String!) {
+            getOrders(userId: $userId) {
                 id
                 userId
                 status

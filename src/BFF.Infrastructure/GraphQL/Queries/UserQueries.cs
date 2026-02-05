@@ -3,8 +3,8 @@ namespace BFF.Infrastructure.GraphQL.Queries;
 public static class UserQueries
 {
     public const string GetUserById = @"
-        query GetUser($id: ID!) {
-            user(id: $id) {
+        query GetUser($id: String!) {
+            getUser(id: $id) {
                 id
                 name
                 email
@@ -17,7 +17,7 @@ public static class UserQueries
 
     public const string GetAllUsers = @"
         query GetAllUsers {
-            users {
+            getUsers {
                 id
                 name
                 email

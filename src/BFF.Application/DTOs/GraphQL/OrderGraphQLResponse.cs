@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace BFF.Application.DTOs.GraphQL;
 
 public class OrderGraphQLResponse
@@ -8,7 +10,10 @@ public class OrderGraphQLResponse
 
 public class OrderData
 {
+    [JsonPropertyName("getOrder")]
     public OrderGraphQL? Order { get; set; }
+    
+    [JsonPropertyName("getOrders")]
     public List<OrderGraphQL>? Orders { get; set; }
 }
 

@@ -16,7 +16,7 @@ public static class UserMutations
         }";
 
     public const string UpdateUser = @"
-        mutation UpdateUser($id: ID!, $input: UpdateUserInput!) {
+        mutation UpdateUser($id: String!, $input: UpdateUserInput!) {
             updateUser(id: $id, input: $input) {
                 id
                 name
@@ -29,7 +29,7 @@ public static class UserMutations
         }";
 
     public const string DeleteUser = @"
-        mutation DeleteUser($id: ID!) {
+        mutation DeleteUser($id: String!) {
             deleteUser(id: $id)
         }";
 }

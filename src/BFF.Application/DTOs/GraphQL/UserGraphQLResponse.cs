@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace BFF.Application.DTOs.GraphQL;
 
 public class UserGraphQLResponse
@@ -8,7 +10,10 @@ public class UserGraphQLResponse
 
 public class UserData
 {
+    [JsonPropertyName("getUser")]
     public UserGraphQL? User { get; set; }
+    
+    [JsonPropertyName("getUsers")]
     public List<UserGraphQL>? Users { get; set; }
 }
 

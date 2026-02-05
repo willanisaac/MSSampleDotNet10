@@ -16,7 +16,7 @@ public static class PaymentMutations
         }";
 
     public const string RefundPayment = @"
-        mutation RefundPayment($id: ID!) {
+        mutation RefundPayment($id: String!) {
             refundPayment(id: $id) {
                 id
                 orderId

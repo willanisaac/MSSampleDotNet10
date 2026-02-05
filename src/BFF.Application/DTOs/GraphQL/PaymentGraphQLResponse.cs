@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace BFF.Application.DTOs.GraphQL;
 
 public class PaymentGraphQLResponse
@@ -8,7 +10,10 @@ public class PaymentGraphQLResponse
 
 public class PaymentData
 {
+    [JsonPropertyName("getPayment")]
     public PaymentGraphQL? Payment { get; set; }
+    
+    [JsonPropertyName("getPayments")]
     public List<PaymentGraphQL>? Payments { get; set; }
 }
 

@@ -21,7 +21,7 @@ public static class OrderMutations
         }";
 
     public const string CancelOrder = @"
-        mutation CancelOrder($id: ID!) {
+        mutation CancelOrder($id: String!) {
             cancelOrder(id: $id) {
                 id
                 userId

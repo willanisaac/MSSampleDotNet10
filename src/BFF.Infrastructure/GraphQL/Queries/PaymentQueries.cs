@@ -3,8 +3,8 @@ namespace BFF.Infrastructure.GraphQL.Queries;
 public static class PaymentQueries
 {
     public const string GetPaymentById = @"
-        query GetPayment($id: ID!) {
-            payment(id: $id) {
+        query GetPayment($id: String!) {
+            getPayment(id: $id) {
                 id
                 orderId
                 amount
@@ -16,8 +16,8 @@ public static class PaymentQueries
         }";
 
     public const string GetPaymentsByOrder = @"
-        query GetPaymentsByOrder($orderId: ID!) {
-            payments(orderId: $orderId) {
+        query GetPaymentsByOrder($orderId: String!) {
+            getPayments(orderId: $orderId) {
                 id
                 orderId
                 amount
