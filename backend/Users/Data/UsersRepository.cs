@@ -19,7 +19,7 @@ public class UsersRepository
     public UsersRepository(string filePath)
     {
         _filePath = filePath;
-        Directory.CreateDirectory(Path.GetDirectoryName(_filePath)!);
+        Directory.CreateDirectory(System.IO.Path.GetDirectoryName(_filePath)!);
         _users = LoadUsers();
     }
 

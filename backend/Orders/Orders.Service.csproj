@@ -5,6 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="HotChocolate.AspNetCore" Version="14.1.0" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Data\orders.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
