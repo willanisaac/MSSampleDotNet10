@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bots y Plataformas Gubernamentales</title>
+  <style>
+    /* ==================== BASE ==================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #f8f9fa;
+    }
+
+    /* ==================== LAYOUT ==================== */
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 0 40px rgba(0,0,0,0.08);
+    }
+
+    /* ==================== HEADER ==================== */
+    header {
+      background: linear-gradient(135deg, #003087 0%, #0055a5 50%, #0077cc 100%);
+      color: #fff;
+      padding: 60px 48px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    header .subtitle {
+      font-size: 1.15rem;
+      opacity: 0.88;
+      max-width: 680px;
+      margin-bottom: 32px;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      font-size: 0.88rem;
+      opacity: 0.8;
+    }
+
+    .header-meta span::before {
+      margin-right: 6px;
+    }
+
+    /* ==================== NAV / TOC ==================== */
+    nav.toc {
+      background: #f0f4f8;
+      border-left: 4px solid #0055a5;
+      padding: 28px 36px;
+    }
+
+    nav.toc h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #0055a5;
+      margin-bottom: 16px;
+    }
+
+    nav.toc ol {
+      padding-left: 20px;
+      column-count: 2;
+      column-gap: 32px;
+    }
+
+    nav.toc li {
+      margin-bottom: 8px;
+      break-inside: avoid;
+    }
+
+    nav.toc a {
+      color: #003087;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    nav.toc a:hover { text-decoration: underline; color: #0077cc; }
+
+    /* ==================== MAIN CONTENT ==================== */
+    main {
+      padding: 48px 48px 64px;
+    }
+
+    section {
+      margin-bottom: 56px;
+    }
+
+    /* ==================== HEADINGS ==================== */
+    h2.section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #003087;
+      border-bottom: 3px solid #0055a5;
+      padding-bottom: 10px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2.section-title .emoji { font-size: 1.6rem; }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0055a5;
+      margin: 28px 0 12px;
+    }
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin: 18px 0 8px;
+    }
+
+    /* ==================== PARAGRAPHS ==================== */
+    p { margin-bottom: 14px; }
+
+    /* ==================== LISTS ==================== */
+    ul, ol {
+      margin: 10px 0 16px 24px;
+    }
+
+    li { margin-bottom: 6px; }
+
+    /* ==================== TABLES ==================== */
+    .table-wrap { overflow-x: auto; margin: 20px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #003087;
+      color: #fff;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 11px 16px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td { background: #f7f9fc; }
+    tr:hover td { background: #eef4ff; }
+
+    /* ==================== CARDS ==================== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .card {
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 22px 24px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover { box-shadow: 0 6px 18px rgba(0,85,165,0.12); }
+
+    .card .card-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .card h4 {
+      margin-top: 0;
+      font-size: 1.05rem;
+      color: #003087;
+    }
+
+    .card p { font-size: 0.92rem; color: #555; }
+
+    /* ==================== CALLOUTS ==================== */
+    .callout {
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin: 20px 0;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .callout .callout-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .callout .callout-body { flex: 1; }
+    .callout .callout-body strong { display: block; margin-bottom: 4px; }
+    .callout .callout-body p { margin: 0; font-size: 0.93rem; }
+
+    .callout-info    { background: #e8f4fd; border-left: 4px solid #0077cc; }
+    .callout-warning { background: #fff8e1; border-left: 4px solid #f59e0b; }
+    .callout-success { background: #e8f5e9; border-left: 4px solid #16a34a; }
+    .callout-danger  { background: #fef2f2; border-left: 4px solid #dc2626; }
+
+    /* ==================== CODE BLOCKS ==================== */
+    pre {
+      background: #1e2a3a;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 20px 24px;
+      overflow-x: auto;
+      margin: 16px 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    code {
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    }
+
+    p code, li code {
+      background: #eef4ff;
+      color: #003087;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.88em;
+    }
+
+    /* ==================== PROCESS STEPS ==================== */
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 16px;
+      margin-bottom: 18px;
+      align-items: flex-start;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      background: #0055a5;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ==================== BADGES / TAGS ==================== */
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .badge-blue   { background: #dbeafe; color: #1d4ed8; }
+    .badge-green  { background: #dcfce7; color: #15803d; }
+    .badge-orange { background: #ffedd5; color: #c2410c; }
+    .badge-red    { background: #fee2e2; color: #b91c1c; }
+    .badge-purple { background: #ede9fe; color: #6d28d9; }
+
+    /* ==================== ARCHITECTURE DIAGRAM ==================== */
+    .diagram {
+      background: #0d1117;
+      color: #7dd3fc;
+      font-family: 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      padding: 24px 28px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+
+    /* ==================== COMPARISON ==================== */
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .comparison-col {
+      border-radius: 8px;
+      padding: 20px 22px;
+    }
+
+    .comparison-col.pros {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+    }
+
+    .comparison-col.cons {
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+    }
+
+    .comparison-col h4 {
+      font-size: 1rem;
+      margin-top: 0;
+    }
+
+    .comparison-col.pros h4 { color: #15803d; }
+    .comparison-col.cons h4 { color: #b91c1c; }
+
+    .comparison-col ul { margin: 8px 0 0 18px; }
+    .comparison-col li { font-size: 0.92rem; }
+
+    /* ==================== FOOTER ==================== */
+    footer {
+      background: #003087;
+      color: rgba(255,255,255,0.75);
+      padding: 36px 48px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.88rem;
+    }
+
+    footer a { color: rgba(255,255,255,0.85); }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 768px) {
+      header, main, footer { padding-left: 24px; padding-right: 24px; }
+      header h1 { font-size: 1.9rem; }
+      nav.toc ol { column-count: 1; }
+      .comparison { grid-template-columns: 1fr; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ==================== PRINT ==================== */
+    @media print {
+      body { background: #fff; }
+      .page-wrapper { box-shadow: none; }
+      header { background: #003087 !important; -webkit-print-color-adjust: exact; }
+      a { text-decoration: none; }
+      .card:hover { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ====================================================
+       HEADER
+  ===================================================== -->
+  <header>
+    <div class="header-badge">Documento Técnico</div>
+    <h1>🤖 Bots y Plataformas Gubernamentales</h1>
+    <p class="subtitle">
+      Análisis integral de la implementación de agentes conversacionales e inteligencia artificial
+      en plataformas digitales del sector público: arquitectura, casos de uso, seguridad y regulación.
+    </p>
+    <div class="header-meta">
+      <span>📅 Marzo 2026</span>
+      <span>🏛️ Transformación Digital Gubernamental</span>
+      <span>📄 Versión 1.0</span>
+      <span>✏️ Editable</span>
+    </div>
+  </header>
+
+  <!-- ====================================================
+       TABLE OF CONTENTS
+  ===================================================== -->
+  <nav class="toc" aria-label="Tabla de contenidos">
+    <h2>📋 Tabla de Contenidos</h2>
+    <ol>
+      <li><a href="#introduccion">Introducción</a></li>
+      <li><a href="#tipos-bots">Tipos de Bots Gubernamentales</a></li>
+      <li><a href="#plataformas">Plataformas Gubernamentales Digitales</a></li>
+      <li><a href="#arquitectura">Arquitectura de Implementación</a></li>
+      <li><a href="#casos-uso">Casos de Uso</a></li>
+      <li><a href="#tecnologias">Tecnologías y Frameworks</a></li>
+      <li><a href="#seguridad">Seguridad y Privacidad</a></li>
+      <li><a href="#regulacion">Marco Regulatorio</a></li>
+      <li><a href="#implementacion">Guía de Implementación</a></li>
+      <li><a href="#metricas">Métricas y KPIs</a></li>
+      <li><a href="#desafios">Desafíos y Recomendaciones</a></li>
+      <li><a href="#conclusion">Conclusiones</a></li>
+    </ol>
+  </nav>
+
+  <!-- ====================================================
+       MAIN
+  ===================================================== -->
+  <main>
+
+    <!-- ===== 1. INTRODUCCIÓN ===== -->
+    <section id="introduccion">
+      <h2 class="section-title"><span class="emoji">🏛️</span> 1. Introducción</h2>
+
+      <p>
+        La transformación digital del sector público ha impulsado la adopción acelerada de
+        <strong>agentes conversacionales (bots)</strong> e inteligencia artificial en las plataformas
+        de atención ciudadana. Los gobiernos enfrentan el reto de ofrecer servicios eficientes,
+        accesibles y disponibles las 24 horas, reduciendo simultáneamente costos operativos y
+        tiempos de espera.
+      </p>
+
+      <p>
+        Un <strong>bot gubernamental</strong> es un programa de software que automatiza interacciones
+        con ciudadanos a través de canales digitales (web, móvil, mensajería, voz), resolviendo
+        consultas, facilitando trámites y personalizando la experiencia del usuario mediante técnicas
+        de procesamiento de lenguaje natural (NLP) y aprendizaje automático (ML).
+      </p>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <strong>Contexto Global</strong>
+          <p>
+            Según el BID (Banco Interamericano de Desarrollo), más del <strong>60 % de los gobiernos
+            de América Latina</strong> han implementado algún tipo de asistente virtual en sus portales
+            de atención ciudadana entre 2020 y 2025, con una tasa de adopción que crece un 25 % anual.
+          </p>
+        </div>
+      </div>
+
+      <h3>1.1 Objetivos del Documento</h3>
+      <ul>
+        <li>Describir los principales tipos de bots utilizados en el sector público.</li>
+        <li>Analizar las plataformas digitales gubernamentales donde se integran.</li>
+        <li>Presentar arquitecturas de referencia y patrones de implementación.</li>
+        <li>Identificar requisitos de seguridad, privacidad y cumplimiento normativo.</li>
+        <li>Proveer una guía práctica para equipos de desarrollo y tomadores de decisiones.</li>
+      </ul>
+
+      <h3>1.2 Alcance</h3>
+      <p>
+        Este documento abarca los niveles <strong>estratégico, arquitectónico y técnico</strong>.
+        Incluye ejemplos de implementación con .NET 10, integraciones con servicios cognitivos de
+        Azure, Microsoft Bot Framework y plataformas de mensajería (Teams, WhatsApp Business API,
+        Telegram).
+      </p>
+    </section>
+
+    <!-- ===== 2. TIPOS DE BOTS ===== -->
+    <section id="tipos-bots">
+      <h2 class="section-title"><span class="emoji">🤖</span> 2. Tipos de Bots Gubernamentales</h2>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">💬</div>
+          <h4>Chatbot de Atención Ciudadana</h4>
+          <p>
+            Responde preguntas frecuentes (FAQ), orienta sobre trámites, horarios, documentación
+            requerida y estado de solicitudes. Canal principal: portales web y aplicaciones móviles.
+          </p>
+          <span class="badge badge-blue">FAQ</span>
+          <span class="badge badge-green">Autoservicio</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h4>Bot de Trámites y Formularios</h4>
+          <p>
+            Guía al ciudadano paso a paso para completar formularios digitales, valida datos en
+            tiempo real y envía alertas de seguimiento.
+          </p>
+          <span class="badge badge-blue">Formularios</span>
+          <span class="badge badge-purple">Validación</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🔔</div>
+          <h4>Bot de Notificaciones Proactivas</h4>
+          <p>
+            Envía alertas, recordatorios de vencimientos, cambios regulatorios y actualizaciones
+            de estado de trámites a través de múltiples canales.
+          </p>
+          <span class="badge badge-orange">Proactivo</span>
+          <span class="badge badge-blue">Multicanal</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🗳️</div>
+          <h4>Bot de Participación Ciudadana</h4>
+          <p>
+            Recopila opiniones, facilita encuestas de satisfacción, gestiona reportes de incidencias
+            urbanas y canaliza peticiones ciudadanas.
+          </p>
+          <span class="badge badge-green">Participación</span>
+          <span class="badge badge-purple">Encuestas</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🏥</div>
+          <h4>Bot de Salud Pública</h4>
+          <p>
+            Informa sobre servicios de salud, agenda citas médicas, envía recordatorios de vacunación
+            y proporciona información sobre emergencias sanitarias.
+          </p>
+          <span class="badge badge-red">Salud</span>
+          <span class="badge badge-orange">Emergencias</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">💰</div>
+          <h4>Bot de Servicios Fiscales</h4>
+          <p>
+            Asiste en declaraciones tributarias, consulta de adeudos, generación de referencias de pago
+            y orientación sobre obligaciones fiscales.
+          </p>
+          <span class="badge badge-blue">Fiscal</span>
+          <span class="badge badge-green">Pagos</span>
+        </div>
+      </div>
+
+      <h3>2.1 Clasificación por Nivel de Inteligencia</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nivel</th>
+              <th>Tipo</th>
+              <th>Tecnología</th>
+              <th>Capacidades</th>
+              <th>Complejidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-green">Nivel 1</span></td>
+              <td>Bot Basado en Reglas</td>
+              <td>Árbol de decisión, menús</td>
+              <td>Respuestas predefinidas, flujos rígidos</td>
+              <td>Baja</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-blue">Nivel 2</span></td>
+              <td>Bot con NLP</td>
+              <td>LUIS, Dialogflow, Rasa</td>
+              <td>Comprensión de intenciones, extracción de entidades</td>
+              <td>Media</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-orange">Nivel 3</span></td>
+              <td>Bot Generativo (IA)</td>
+              <td>GPT-4, Azure OpenAI</td>
+              <td>Respuestas contextuales, conversación natural</td>
+              <td>Alta</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-purple">Nivel 4</span></td>
+              <td>Agente Autónomo</td>
+              <td>LangChain, Semantic Kernel</td>
+              <td>Ejecución de tareas, razonamiento multi-paso</td>
+              <td>Muy Alta</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 3. PLATAFORMAS GUBERNAMENTALES ===== -->
+    <section id="plataformas">
+      <h2 class="section-title"><span class="emoji">🌐</span> 3. Plataformas Gubernamentales Digitales</h2>
+
+      <p>
+        Las plataformas digitales gubernamentales son los ecosistemas donde los bots operan e
+        interactúan con el ciudadano. Su correcta integración determina la calidad de la experiencia
+        y la efectividad del servicio.
+      </p>
+
+      <h3>3.1 Portales de Servicio Ciudadano</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Plataforma</th>
+              <th>País / Región</th>
+              <th>Tipo de Bot Integrado</th>
+              <th>Canal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>GOB.MX</strong></td>
+              <td>México</td>
+              <td>Asistente virtual de trámites</td>
+              <td>Web, WhatsApp</td>
+            </tr>
+            <tr>
+              <td><strong>Chile Atiende</strong></td>
+              <td>Chile</td>
+              <td>Chatbot de orientación ciudadana</td>
+              <td>Web, Telegram</td>
+            </tr>
+            <tr>
+              <td><strong>GOV.BR</strong></td>
+              <td>Brasil</td>
+              <td>Bot de servicios digitales</td>
+              <td>Web, App Móvil</td>
+            </tr>
+            <tr>
+              <td><strong>Colombia.co</strong></td>
+              <td>Colombia</td>
+              <td>Asistente de PQRS</td>
+              <td>Web, Messenger</td>
+            </tr>
+            <tr>
+              <td><strong>Argentina.gob.ar</strong></td>
+              <td>Argentina</td>
+              <td>Bot de trámites y notificaciones</td>
+              <td>Web, WhatsApp</td>
+            </tr>
+            <tr>
+              <td><strong>AEAT Virtual</strong></td>
+              <td>España</td>
+              <td>Asistente fiscal</td>
+              <td>Web, App Móvil</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>3.2 Canales de Comunicación Soportados</h3>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🌍</div>
+          <h4>Portal Web</h4>
+          <p>Widget de chat embebido en el portal gubernamental. Acceso universal, sin app adicional.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h4>WhatsApp Business API</h4>
+          <p>Canal de alta penetración ciudadana. Soporta texto, imágenes, documentos y botones.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💼</div>
+          <h4>Microsoft Teams</h4>
+          <p>Para comunicación interna entre funcionarios y servicios de gobierno electrónico.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📲</div>
+          <h4>App Móvil Gubernamental</h4>
+          <p>Integración nativa en la aplicación oficial, con autenticación biométrica y notificaciones push.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔊</div>
+          <h4>Asistente de Voz</h4>
+          <p>Cortana, Alexa Skills o Google Actions para ciudadanos con discapacidad visual o analfabetismo digital.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📧</div>
+          <h4>Correo Electrónico / SMS</h4>
+          <p>Automatización de respuestas y notificaciones por correo y mensajes de texto masivos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. ARQUITECTURA ===== -->
+    <section id="arquitectura">
+      <h2 class="section-title"><span class="emoji">🏗️</span> 4. Arquitectura de Implementación</h2>
+
+      <h3>4.1 Diagrama de Arquitectura de Referencia</h3>
+
+      <pre class="diagram">
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           CIUDADANO / FUNCIONARIO                           │
+│   ┌──────────┐  ┌──────────┐  ┌──────────────┐  ┌────────┐  ┌──────────┐   │
+│   │  Portal  │  │WhatsApp  │  │ App Móvil    │  │ Teams  │  │  Voz     │   │
+│   │   Web    │  │Business  │  │ Gubernamental│  │        │  │ (IVR)    │   │
+│   └────┬─────┘  └────┬─────┘  └──────┬───────┘  └───┬────┘  └────┬─────┘   │
+└────────┼─────────────┼───────────────┼──────────────┼────────────┼─────────┘
+         └─────────────┴───────────────┴──────────────┴────────────┘
+                                       │ HTTPS / WebSocket
+                                       ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                    🔀  AZURE BOT SERVICE / BOT FRAMEWORK                     │
+│   ┌──────────────────────────────────────────────────────────────────────┐   │
+│   │   Channel Connector  │  Activity Handler  │  Middleware Pipeline     │   │
+│   └────────────┬─────────────────────────────────────────────────────────┘   │
+└────────────────┼─────────────────────────────────────────────────────────────┘
+                 │
+                 ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                       🧠  CAPA DE INTELIGENCIA                               │
+│   ┌─────────────────┐  ┌──────────────────────┐  ┌───────────────────────┐  │
+│   │  Azure OpenAI   │  │  Azure AI Language   │  │  Cognitive Services   │  │
+│   │  (GPT-4o)       │  │  (CLU / LUIS / QnA)  │  │  (Speech, Vision)     │  │
+│   └─────────────────┘  └──────────────────────┘  └───────────────────────┘  │
+└──────────────────────────────────────────────────────────────────────────────┘
+                 │
+                 ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                     ⚙️  MICROSERVICIOS DE NEGOCIO (.NET 10)                  │
+│   ┌───────────────┐  ┌──────────────┐  ┌──────────────┐  ┌───────────────┐  │
+│   │  Trámites Svc │  │  Pagos Svc   │  │  Ciudadano   │  │ Notificaciones│  │
+│   │  (REST/gRPC)  │  │  (REST/gRPC) │  │  Svc         │  │  Svc          │  │
+│   └───────────────┘  └──────────────┘  └──────────────┘  └───────────────┘  │
+└──────────────────────────────────────────────────────────────────────────────┘
+                 │
+                 ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          💾  CAPA DE DATOS                                   │
+│   ┌──────────────┐  ┌────────────────┐  ┌──────────────┐  ┌─────────────┐   │
+│   │ Azure Cosmos │  │  Azure SQL DB  │  │  Redis Cache │  │ Azure Blob  │   │
+│   │ (Sesiones)   │  │  (Trámites)    │  │  (Estado)    │  │ (Docs)      │   │
+│   └──────────────┘  └────────────────┘  └──────────────┘  └─────────────┘   │
+└──────────────────────────────────────────────────────────────────────────────┘</pre>
+
+      <h3>4.2 Componentes Principales</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Componente</th>
+              <th>Responsabilidad</th>
+              <th>Tecnología Recomendada</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Channel Connector</strong></td>
+              <td>Normalizar mensajes de diferentes canales (Web, WhatsApp, Teams)</td>
+              <td>Azure Bot Service, Direct Line API</td>
+            </tr>
+            <tr>
+              <td><strong>NLP Engine</strong></td>
+              <td>Interpretar intenciones del usuario y extraer entidades</td>
+              <td>Azure AI Language (CLU), LUIS, Rasa</td>
+            </tr>
+            <tr>
+              <td><strong>Dialog Manager</strong></td>
+              <td>Gestionar el flujo conversacional y el estado de sesión</td>
+              <td>Bot Framework SDK v4, Waterfall Dialogs</td>
+            </tr>
+            <tr>
+              <td><strong>Orchestrator</strong></td>
+              <td>Enrutar intenciones hacia los microservicios correctos</td>
+              <td>Semantic Kernel, .NET 10 Minimal API</td>
+            </tr>
+            <tr>
+              <td><strong>State Manager</strong></td>
+              <td>Persistir estado de la conversación entre turnos</td>
+              <td>Azure Cosmos DB, Redis</td>
+            </tr>
+            <tr>
+              <td><strong>Security Gateway</strong></td>
+              <td>Autenticación, autorización y cifrado</td>
+              <td>Azure AD B2C, OAuth 2.0, mTLS</td>
+            </tr>
+            <tr>
+              <td><strong>Analytics &amp; Observability</strong></td>
+              <td>Monitoreo, métricas, logs y trazabilidad</td>
+              <td>Application Insights, OpenTelemetry</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>4.3 Ejemplo de Código — Bot con .NET 10</h3>
+
+      <pre><code>// Program.cs — Bot Gubernamental con .NET 10 y Bot Framework
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Integration.AspNet.Core;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Registro de servicios
+builder.Services.AddSingleton&lt;IBotFrameworkHttpAdapter, CloudAdapter&gt;();
+builder.Services.AddSingleton&lt;IStorage, CosmosDbPartitionedStorage&gt;(sp =>
+    new CosmosDbPartitionedStorage(
+        builder.Configuration.GetSection("CosmosDb")
+               .Get&lt;CosmosDbPartitionedStorageOptions&gt;()!));
+
+builder.Services.AddSingleton&lt;ConversationState&gt;();
+builder.Services.AddSingleton&lt;UserState&gt;();
+builder.Services.AddTransient&lt;IBot, TramitesBot&gt;();
+
+// OpenTelemetry (observabilidad)
+builder.Services.AddOpenTelemetry()
+    .WithTracing(b => b.AddAspNetCoreInstrumentation()
+                       .AddAzureMonitorTraceExporter());
+
+var app = builder.Build();
+app.MapPost("/api/messages", async (HttpContext ctx,
+    IBotFrameworkHttpAdapter adapter, IBot bot) =>
+    await adapter.ProcessAsync(ctx.Request, ctx.Response, bot));
+
+app.Run();
+
+
+// TramitesBot.cs — Lógica del Bot
+public class TramitesBot : ActivityHandler
+{
+    private readonly ConversationState _conversationState;
+    private readonly ILogger&lt;TramitesBot&gt; _logger;
+
+    public TramitesBot(ConversationState conversationState,
+                       ILogger&lt;TramitesBot&gt; logger)
+    {
+        _conversationState = conversationState;
+        _logger = logger;
+    }
+
+    protected override async Task OnMessageActivityAsync(
+        ITurnContext&lt;IMessageActivity&gt; turnContext,
+        CancellationToken cancellationToken)
+    {
+        var userMessage = turnContext.Activity.Text?.Trim() ?? string.Empty;
+        _logger.LogInformation("Mensaje recibido: {Message}", userMessage);
+
+        var reply = userMessage.ToLowerInvariant() switch
+        {
+            var m when m.Contains("trámite") || m.Contains("tramite")
+                => "Puedo ayudarte con tus trámites. ¿Qué necesitas realizar?",
+            var m when m.Contains("cita") || m.Contains("turno")
+                => "Para agendar una cita, necesito tu CURP. ¿Me la puedes proporcionar?",
+            var m when m.Contains("pago") || m.Contains("adeudo")
+                => "Consultaré tu situación fiscal. Por favor, ingresa tu RFC.",
+            _   => "Hola 👋 Soy el asistente virtual gubernamental. ¿En qué te puedo ayudar?"
+        };
+
+        await turnContext.SendActivityAsync(
+            MessageFactory.Text(reply), cancellationToken);
+
+        await _conversationState.SaveChangesAsync(turnContext, false, cancellationToken);
+    }
+}</code></pre>
+    </section>
+
+    <!-- ===== 5. CASOS DE USO ===== -->
+    <section id="casos-uso">
+      <h2 class="section-title"><span class="emoji">📌</span> 5. Casos de Uso</h2>
+
+      <h3>5.1 Consulta de Trámites</h3>
+      <p>
+        El ciudadano pregunta por los requisitos de un trámite específico. El bot identifica la
+        intención <code>ConsultarTrámite</code>, extrae la entidad <code>tipo_tramite</code> y
+        consulta el microservicio de catálogo de trámites para devolver los requisitos actualizados.
+      </p>
+
+      <h3>5.2 Seguimiento de Solicitudes</h3>
+      <p>
+        El usuario proporciona su número de folio y el bot consulta el sistema de gestión
+        documental para informar el estado actual, etapa del proceso y tiempo estimado de resolución.
+      </p>
+
+      <h3>5.3 Pago de Servicios</h3>
+      <p>
+        El bot guía al ciudadano en la generación de referencias de pago, calcula importes con
+        actualizaciones e intereses, y confirma el pago mediante integración con pasarelas como
+        BBVA Bancomer API, Banorte o Stripe Government.
+      </p>
+
+      <h3>5.4 Quejas y Sugerencias (PQRS)</h3>
+      <p>
+        Captura y categoriza automáticamente peticiones, quejas, reclamos y sugerencias,
+        asignando prioridad y derivando a la dependencia correspondiente con seguimiento
+        automático por correo electrónico.
+      </p>
+
+      <div class="callout callout-success">
+        <span class="callout-icon">✅</span>
+        <div class="callout-body">
+          <strong>Caso de Éxito — SAT México (Bot del SAT)</strong>
+          <p>
+            El Servicio de Administración Tributaria de México implementó un asistente virtual
+            que redujo en un <strong>42 %</strong> las llamadas al call center y atendió más de
+            <strong>18 millones de interacciones</strong> en 2024 con un índice de satisfacción
+            del 87 %.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. TECNOLOGÍAS ===== -->
+    <section id="tecnologias">
+      <h2 class="section-title"><span class="emoji">⚙️</span> 6. Tecnologías y Frameworks</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Categoría</th>
+              <th>Tecnología</th>
+              <th>Descripción</th>
+              <th>Licencia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Framework de Bot</td>
+              <td>Microsoft Bot Framework SDK v4</td>
+              <td>SDK open-source para construir bots con .NET, Node.js o Python</td>
+              <td>MIT</td>
+            </tr>
+            <tr>
+              <td>Orquestación IA</td>
+              <td>Semantic Kernel (.NET)</td>
+              <td>Integración de LLMs con plugins de negocio</td>
+              <td>MIT</td>
+            </tr>
+            <tr>
+              <td>NLP</td>
+              <td>Azure AI Language (CLU)</td>
+              <td>Comprensión del lenguaje conversacional, sucede a LUIS</td>
+              <td>Comercial</td>
+            </tr>
+            <tr>
+              <td>LLM</td>
+              <td>Azure OpenAI (GPT-4o)</td>
+              <td>Modelo de lenguaje para respuestas generativas</td>
+              <td>Comercial</td>
+            </tr>
+            <tr>
+              <td>Canal</td>
+              <td>Azure Bot Service</td>
+              <td>Conector multicanal gestionado en la nube</td>
+              <td>Comercial</td>
+            </tr>
+            <tr>
+              <td>Backend</td>
+              <td>.NET 10 (C#)</td>
+              <td>Runtime de alto rendimiento para microservicios</td>
+              <td>MIT</td>
+            </tr>
+            <tr>
+              <td>Mensajería</td>
+              <td>WhatsApp Business API</td>
+              <td>Canal oficial de WhatsApp para empresas y gobierno</td>
+              <td>Comercial</td>
+            </tr>
+            <tr>
+              <td>Observabilidad</td>
+              <td>OpenTelemetry + App Insights</td>
+              <td>Trazas, métricas y logs distribuidos</td>
+              <td>Apache 2.0 / Comercial</td>
+            </tr>
+            <tr>
+              <td>Autenticación</td>
+              <td>Azure AD B2C</td>
+              <td>Gestión de identidades para ciudadanos</td>
+              <td>Comercial</td>
+            </tr>
+            <tr>
+              <td>Base de datos</td>
+              <td>Azure Cosmos DB</td>
+              <td>Persistencia del estado conversacional</td>
+              <td>Comercial</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 7. SEGURIDAD ===== -->
+    <section id="seguridad">
+      <h2 class="section-title"><span class="emoji">🔒</span> 7. Seguridad y Privacidad</h2>
+
+      <p>
+        Los bots gubernamentales procesan datos personales y sensibles de los ciudadanos, por lo que
+        deben cumplir con los más estrictos estándares de seguridad y privacidad.
+      </p>
+
+      <h3>7.1 Principios de Seguridad</h3>
+
+      <div class="comparison">
+        <div class="comparison-col pros">
+          <h4>✅ Buenas Prácticas</h4>
+          <ul>
+            <li>Cifrado TLS 1.3 en todos los canales</li>
+            <li>Autenticación multifactor (MFA) para ciudadanos</li>
+            <li>Tokenización de datos sensibles (CURP, RFC, NSS)</li>
+            <li>Auditoría de todas las interacciones</li>
+            <li>Principio de mínimo privilegio</li>
+            <li>Pruebas de penetración periódicas</li>
+            <li>Cifrado en reposo (AES-256)</li>
+          </ul>
+        </div>
+        <div class="comparison-col cons">
+          <h4>❌ Riesgos a Mitigar</h4>
+          <ul>
+            <li>Inyección de prompts en bots generativos</li>
+            <li>Exposición de datos PII en logs</li>
+            <li>Sesiones sin expiración adecuada</li>
+            <li>Falta de validación de entradas</li>
+            <li>APIs sin rate limiting</li>
+            <li>Secretos hardcodeados en configuración</li>
+            <li>MITM en canales de mensajería</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>7.2 Autenticación y Autorización</h3>
+
+      <pre><code>// Middleware de seguridad en .NET 10
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAdB2C"));
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("CiudadanoAutenticado", policy =>
+        policy.RequireClaim("extension_CURP")
+              .RequireClaim("verified_identity", "true"));
+});
+
+// Sanitización de datos PII en logs
+builder.Services.AddLogging(logging =>
+{
+    logging.AddOpenTelemetry(o =>
+        o.AddProcessor(new PIIRedactionProcessor()));
+});</code></pre>
+
+      <h3>7.3 Protección contra Inyección de Prompts</h3>
+
+      <div class="callout callout-warning">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <strong>Riesgo Crítico en Bots con LLM</strong>
+          <p>
+            Los bots gubernamentales que utilizan modelos generativos (GPT-4) son susceptibles a
+            ataques de <em>prompt injection</em>, donde un ciudadano malicioso intenta manipular las
+            instrucciones del sistema. Se debe implementar validación de entradas, contexto acotado
+            y filtros de seguridad de Azure OpenAI (Content Safety).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8. REGULACIÓN ===== -->
+    <section id="regulacion">
+      <h2 class="section-title"><span class="emoji">⚖️</span> 8. Marco Regulatorio</h2>
+
+      <p>
+        La implementación de bots gubernamentales debe enmarcarse dentro de las leyes y reglamentos
+        aplicables en materia de protección de datos, gobierno digital y uso de inteligencia artificial.
+      </p>
+
+      <h3>8.1 Normativas Relevantes por País</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>País</th>
+              <th>Normativa</th>
+              <th>Ámbito</th>
+              <th>Año</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>México</td>
+              <td>Ley Federal de Protección de Datos Personales (LFPDPPP)</td>
+              <td>Datos personales en posesión de particulares y gobierno</td>
+              <td>2010</td>
+            </tr>
+            <tr>
+              <td>México</td>
+              <td>Estrategia Digital Nacional 2021-2024</td>
+              <td>Transformación digital del gobierno federal</td>
+              <td>2021</td>
+            </tr>
+            <tr>
+              <td>Unión Europea</td>
+              <td>Reglamento General de Protección de Datos (GDPR)</td>
+              <td>Datos personales de ciudadanos europeos</td>
+              <td>2018</td>
+            </tr>
+            <tr>
+              <td>Unión Europea</td>
+              <td>AI Act (Reglamento de IA)</td>
+              <td>Uso de IA de alto riesgo en servicios públicos</td>
+              <td>2024</td>
+            </tr>
+            <tr>
+              <td>Colombia</td>
+              <td>Ley 1581 (Habeas Data)</td>
+              <td>Protección de datos personales</td>
+              <td>2012</td>
+            </tr>
+            <tr>
+              <td>Argentina</td>
+              <td>Ley 25.326 de Protección de Datos Personales</td>
+              <td>Datos personales</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>Chile</td>
+              <td>Ley 19.628 + Reforma 2024</td>
+              <td>Datos personales y privacidad</td>
+              <td>2024</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>8.2 Principios del AI Act Europeo Aplicables</h3>
+
+      <ul>
+        <li><strong>Transparencia:</strong> El ciudadano debe saber que interactúa con un bot.</li>
+        <li><strong>Supervisión humana:</strong> Siempre debe existir opción de escalar a un agente humano.</li>
+        <li><strong>No discriminación:</strong> Los algoritmos no deben generar sesgos.</li>
+        <li><strong>Explicabilidad:</strong> Las decisiones automatizadas deben poder explicarse.</li>
+        <li><strong>Minimización de datos:</strong> Solo recopilar los datos estrictamente necesarios.</li>
+      </ul>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <strong>Recomendación de Implementación</strong>
+          <p>
+            Incluir siempre un mensaje inicial que informe al ciudadano que está interactuando
+            con un asistente virtual automatizado y ofrecer la opción de ser atendido por un
+            funcionario humano en cualquier momento de la conversación.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 9. IMPLEMENTACIÓN ===== -->
+    <section id="implementacion">
+      <h2 class="section-title"><span class="emoji">🚀</span> 9. Guía de Implementación</h2>
+
+      <h3>9.1 Fases del Proyecto</h3>
+
+      <ol class="steps">
+        <li>
+          <div>
+            <h4>Fase 1 — Análisis y Diseño (4-6 semanas)</h4>
+            <p>Mapeo de intenciones (intent mapping), definición de flujos conversacionales,
+            identificación de entidades clave, análisis de datos existentes y diseño de arquitectura.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Fase 2 — Desarrollo del Prototipo (6-8 semanas)</h4>
+            <p>Desarrollo del bot base con Bot Framework, integración con NLP (Azure CLU),
+            implementación de los 5 flujos conversacionales más importantes y pruebas unitarias.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Fase 3 — Integración con Sistemas Gubernamentales (4-6 semanas)</h4>
+            <p>Conexión con los microservicios de trámites, pagos y ciudadanos. Implementación
+            de autenticación con Azure AD B2C. Cifrado y auditoría.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Fase 4 — Pruebas y QA (3-4 semanas)</h4>
+            <p>Pruebas de carga, penetración, usabilidad con ciudadanos reales, pruebas de
+            accesibilidad (WCAG 2.1 AA) y pruebas de regresión automatizadas.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Fase 5 — Despliegue y Monitoreo (2-3 semanas)</h4>
+            <p>Despliegue en Azure Government Cloud, configuración de pipelines CI/CD,
+            instrumentación con OpenTelemetry y puesta en marcha del dashboard de métricas.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Fase 6 — Mejora Continua (Ongoing)</h4>
+            <p>Revisión mensual de intenciones no reconocidas, entrenamiento del modelo NLP con
+            datos reales, análisis de satisfacción ciudadana y expansión de capacidades.</p>
+          </div>
+        </li>
+      </ol>
+
+      <h3>9.2 Requisitos Mínimos de Infraestructura</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Componente</th>
+              <th>Recurso Azure</th>
+              <th>SKU Mínimo</th>
+              <th>Costo Estimado/mes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bot Service</td>
+              <td>Azure Bot Service</td>
+              <td>Standard (F0 dev, S1 prod)</td>
+              <td>$0–$50 USD</td>
+            </tr>
+            <tr>
+              <td>NLP</td>
+              <td>Azure AI Language</td>
+              <td>Standard S0</td>
+              <td>$75–$300 USD</td>
+            </tr>
+            <tr>
+              <td>LLM</td>
+              <td>Azure OpenAI GPT-4o</td>
+              <td>Pay-per-token</td>
+              <td>$200–$2,000 USD</td>
+            </tr>
+            <tr>
+              <td>App Hosting</td>
+              <td>Azure App Service</td>
+              <td>P2v3</td>
+              <td>$140 USD</td>
+            </tr>
+            <tr>
+              <td>Estado Sesiones</td>
+              <td>Azure Cosmos DB</td>
+              <td>Serverless</td>
+              <td>$10–$50 USD</td>
+            </tr>
+            <tr>
+              <td>Monitoreo</td>
+              <td>Application Insights</td>
+              <td>Pay-per-GB</td>
+              <td>$20–$100 USD</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 10. MÉTRICAS ===== -->
+    <section id="metricas">
+      <h2 class="section-title"><span class="emoji">📊</span> 10. Métricas y KPIs</h2>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h4>Tasa de Resolución Automática</h4>
+          <p>% de conversaciones resueltas por el bot sin intervención humana.<br>
+          <strong>Meta: &gt; 75 %</strong></p>
+        </div>
+        <div class="card">
+          <div class="card-icon">😊</div>
+          <h4>CSAT (Customer Satisfaction)</h4>
+          <p>Satisfacción del ciudadano medida post-conversación (escala 1-5).<br>
+          <strong>Meta: &gt; 4.0 / 5.0</strong></p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h4>Tiempo de Respuesta</h4>
+          <p>Latencia promedio desde la recepción del mensaje hasta la respuesta.<br>
+          <strong>Meta: &lt; 2 segundos</strong></p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧠</div>
+          <h4>Precisión NLP</h4>
+          <p>% de intenciones correctamente identificadas por el modelo de lenguaje.<br>
+          <strong>Meta: &gt; 90 %</strong></p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📈</div>
+          <h4>Tasa de Abandono</h4>
+          <p>% de usuarios que abandonan la conversación antes de resolver su consulta.<br>
+          <strong>Meta: &lt; 15 %</strong></p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💰</div>
+          <h4>Costo por Interacción</h4>
+          <p>Costo operativo total dividido entre el número de interacciones.<br>
+          <strong>Meta: &lt; $0.05 USD</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 11. DESAFÍOS ===== -->
+    <section id="desafios">
+      <h2 class="section-title"><span class="emoji">⚠️</span> 11. Desafíos y Recomendaciones</h2>
+
+      <h3>11.1 Principales Desafíos</h3>
+
+      <div class="callout callout-warning">
+        <span class="callout-icon">🌐</span>
+        <div class="callout-body">
+          <strong>Diversidad Lingüística y Cultural</strong>
+          <p>México cuenta con 68 lenguas indígenas reconocidas. Los bots gubernamentales deben
+          contemplar al menos español neutro y regional, e idealmente soporte para las principales
+          lenguas originarias (náhuatl, maya, zapoteco).</p>
+        </div>
+      </div>
+
+      <div class="callout callout-warning">
+        <span class="callout-icon">♿</span>
+        <div class="callout-body">
+          <strong>Brecha Digital y Accesibilidad</strong>
+          <p>No todos los ciudadanos tienen acceso a smartphones o internet de alta velocidad.
+          Los bots deben funcionar correctamente en redes 2G/3G y dispositivos de gama baja.
+          La interfaz debe cumplir con WCAG 2.1 nivel AA.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-danger">
+        <span class="callout-icon">🔒</span>
+        <div class="callout-body">
+          <strong>Integración con Sistemas Legados</strong>
+          <p>Muchas dependencias gubernamentales operan con sistemas SAP, mainframes o bases de
+          datos de los años 90. La integración requiere capas de adaptadores, webhooks o
+          patrones anti-corrupción para modernizar sin reemplazar.</p>
+        </div>
+      </div>
+
+      <h3>11.2 Recomendaciones Estratégicas</h3>
+
+      <ul>
+        <li>Comenzar con un <strong>piloto acotado</strong> (una dependencia, un trámite frecuente) antes de escalar.</li>
+        <li>Establecer un <strong>equipo de entrenamiento continuo</strong> del modelo NLP con datos reales.</li>
+        <li>Garantizar <strong>escalado a humano</strong> en cualquier momento de la conversación.</li>
+        <li>Publicar los <strong>datos de desempeño del bot</strong> de forma transparente.</li>
+        <li>Hacer <strong>pruebas de usabilidad</strong> con ciudadanos de diversos perfiles digitales.</li>
+        <li>Implementar <strong>A/B testing</strong> para mejorar continuamente los flujos conversacionales.</li>
+        <li>Asegurar la <strong>portabilidad de datos</strong> para evitar dependencia de un proveedor (vendor lock-in).</li>
+      </ul>
+    </section>
+
+    <!-- ===== 12. CONCLUSIONES ===== -->
+    <section id="conclusion">
+      <h2 class="section-title"><span class="emoji">🏁</span> 12. Conclusiones</h2>
+
+      <p>
+        La implementación de bots en plataformas gubernamentales representa una oportunidad
+        transformadora para modernizar la atención ciudadana, reducir costos operativos y acercar
+        los servicios del Estado a todos los ciudadanos, independientemente de su ubicación geográfica
+        o condición socioeconómica.
+      </p>
+
+      <p>
+        Sin embargo, el éxito de estas iniciativas depende de una <strong>estrategia integral</strong>
+        que equilibre la automatización con la supervisión humana, garantice la seguridad y privacidad
+        de los datos, cumpla el marco regulatorio vigente y ponga siempre al ciudadano en el centro
+        del diseño.
+      </p>
+
+      <p>
+        Con tecnologías como <strong>.NET 10, Azure OpenAI, Semantic Kernel</strong> y los estándares
+        abiertos de <strong>OpenTelemetry</strong>, los gobiernos cuentan hoy con un ecosistema maduro
+        para construir asistentes virtuales robustos, seguros y escalables que contribuyan a una
+        verdadera transformación digital del sector público.
+      </p>
+
+      <div class="callout callout-success">
+        <span class="callout-icon">🎯</span>
+        <div class="callout-body">
+          <strong>Próximos Pasos Recomendados</strong>
+          <p>
+            Revisar la arquitectura de referencia, seleccionar el caso de uso piloto de mayor
+            impacto ciudadano, conformar el equipo multidisciplinario (tecnología + gestión pública
+            + UX), y arrancar la Fase 1 de análisis y diseño.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================
+       FOOTER
+  ===================================================== -->
+  <footer>
+    <div>
+      <strong>🤖 Bots y Plataformas Gubernamentales</strong><br>
+      Documento generado a partir del análisis de mejores prácticas en transformación digital gubernamental.
+    </div>
+    <div>
+      <span>Versión 1.0 · Marzo 2026</span><br>
+      <span>Repositorio: <a href="https://github.com/willanisaac/MSSampleDotNet10">MSSampleDotNet10</a></span>
+    </div>
+  </footer>
+
+</div><!-- /.page-wrapper -->
+
+</body>
+</html>
