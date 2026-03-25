@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bots Plataformas Gubernamentales</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background: #d0d0d0;
+    margin: 0;
+    padding: 70px 20px 40px;
+    color: #1a1a1a;
+  }
+  /* ---- Toolbar ---- */
+  #toolbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #003087;
+    color: #fff;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0,0,0,.35);
+  }
+  #toolbar .title {
+    flex: 1;
+    font-weight: 700;
+    font-size: 0.95em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #toolbar button {
+    background: #fff;
+    color: #003087;
+    border: none;
+    padding: 6px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85em;
+    transition: background .15s;
+  }
+  #toolbar button:hover { background: #cce0ff; }
+  /* ---- Pages ---- */
+  .page {
+    background: #fff;
+    max-width: 860px;
+    margin: 0 auto 36px;
+    padding: 48px 60px;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.15);
+  }
+  .page-label {
+    font-size: 0.72em;
+    color: #aaa;
+    text-align: right;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+  /* ---- Editable text blocks ---- */
+  [contenteditable] {
+    outline: none;
+    border-radius: 3px;
+    padding: 2px 4px;
+    transition: background .12s, box-shadow .12s;
+  }
+  [contenteditable]:hover { background: #f0f6ff; }
+  [contenteditable]:focus {
+    background: #fffbe6;
+    box-shadow: 0 0 0 2px #f0c000;
+  }
+  .h1 {
+    font-size: 2em;
+    font-weight: 800;
+    color: #003087;
+    margin: 0 0 10px;
+    line-height: 1.2;
+  }
+  .h2 {
+    font-size: 1.45em;
+    font-weight: 700;
+    color: #003087;
+    margin: 0 0 8px;
+    line-height: 1.3;
+  }
+  .h3 {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 6px;
+  }
+  .body {
+    font-size: 0.95em;
+    line-height: 1.65;
+    margin: 0 0 6px;
+    color: #333;
+  }
+  .small {
+    font-size: 0.82em;
+    color: #666;
+    margin: 0 0 4px;
+  }
+  .spacer { margin-bottom: 18px; }
+</style>
+</head>
+<body>
+<div id="toolbar">
+  <span class="title">&#128196; Bots Plataformas Gubernamentales &mdash; Versi&oacute;n Editable</span>
+  <button onclick="printDoc()">&#128438;&nbsp;Imprimir</button>
+  <button onclick="saveDoc()">&#128190;&nbsp;Guardar HTML</button>
+</div>
+
+<script>
+function printDoc() { window.print(); }
+function saveDoc() {
+  var content = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+  var blob = new Blob([content], { type: "text/html;charset=utf-8" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "Bots_plataformas_gubernamentales_editado.html";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+</script>
+
+
+<div class="page">
+<div class="page-label">P&aacute;gina 1</div>
+<p class="h1" contenteditable="true">SUITE DE</p>
+<p class="h1" contenteditable="true">AUTOMATIZACIÓN</p>
+<p class="h2 spacer" contenteditable="true">Plataformas gubernamentales IESS, SUT</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 2</div>
+<p class="h1" contenteditable="true">SUITE DE AUTOMATIZACIÓN</p>
+<p class="h2 spacer" contenteditable="true">Productos ofertados por plataforma gubernamental</p>
+<p class="body spacer" contenteditable="true">IESS extracción de préstamos quirografarios e hipotecarios</p>
+<p class="body" contenteditable="true">IESS extracción de novedades</p>
+<p class="body" contenteditable="true">IESS extracción de comprobantes de pago</p>
+<p class="body" contenteditable="true">IESS extracción solicitudes fondo de reserva</p>
+<p class="body" contenteditable="true">IESS registro de novedades</p>
+<p class="body" contenteditable="true">IESS extracción de planillas acumuladas y consolidadas</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 3</div>
+<p class="h1" contenteditable="true">BOT: GESTIÓN DE NOVEDADES IESS</p>
+<p class="h3 spacer" contenteditable="true">Descarga masiva a través del menú “Consulta de novedades”</p>
+<p class="body spacer" contenteditable="true">Modalidad de descarga Variedad de filtros</p>
+<p class="body" contenteditable="true">Genera la descarga de “Todas” las Aplica filtros por Cédula, Período,</p>
+<p class="body" contenteditable="true">novedades; o a su vez la &quot;Más Tipo de Novedad o Estado.</p>
+<p class="body" contenteditable="true">reciente&quot; o la &quot;Más antigua&quot;.</p>
+<p class="h3 spacer" contenteditable="true">Velocidad de descarga Funciones principales</p>
+<p class="h1 spacer" contenteditable="true">1</p>
+<p class="body spacer" contenteditable="true">Descarga de novedad + Reporte en Excel +</p>
+<p class="body" contenteditable="true">Minuto por novedad</p>
+<p class="body" contenteditable="true">Renombrado automático Información por novedad</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 4</div>
+<p class="h1" contenteditable="true">BOT: GESTIÓN NOVEDADES NÓMINA IESS</p>
+<p class="h3 spacer" contenteditable="true">Descarga planillas de préstamos, fondos de reserva y extensión cobertura</p>
+<p class="h3" contenteditable="true">conyugue.</p>
+<p class="body spacer" contenteditable="true">Modalidad de descarga</p>
+<p class="body" contenteditable="true">Genera la descarga de planillas en</p>
+<p class="body" contenteditable="true">formato Excel o PDF.</p>
+<p class="body" contenteditable="true">Soporte multi - sucursal</p>
+<p class="body" contenteditable="true">Permite la descarga masiva de</p>
+<p class="body" contenteditable="true">novedades por periodo, incluso si la</p>
+<p class="body" contenteditable="true">empresa cuenta con más de una</p>
+<p class="body" contenteditable="true">sucursal.</p>
+<p class="body" contenteditable="true">Funciones principales</p>
+<p class="h1 spacer" contenteditable="true">45</p>
+<p class="body spacer" contenteditable="true">Descarga de planillas + Consolidación</p>
+<p class="body" contenteditable="true">de valores a descontar por empleado</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 5</div>
+<p class="h1" contenteditable="true">BOT: GESTIÓN DE PLANILLAS IESS</p>
+<p class="body spacer" contenteditable="true">Descarga masiva de planillas de aportes.</p>
+<p class="body" contenteditable="true">Modalidad de descarga Variedad de filtros</p>
+<p class="body" contenteditable="true">Genera la descarga de planillas de Aplica filtros por Cédula, Alcance</p>
+<p class="body" contenteditable="true">aportes consolidadas o detalladas, de consulta o Período.</p>
+<p class="body" contenteditable="true">en formato excel pdf.</p>
+<p class="h3 spacer" contenteditable="true">Velocidad de descarga Funciones principales</p>
+<p class="h1 spacer" contenteditable="true">30</p>
+<p class="body spacer" contenteditable="true">Descarga de planillas + Reporte en Excel +</p>
+<p class="body" contenteditable="true">Segundos por planilla</p>
+<p class="body" contenteditable="true">Renombrado automático Consolidado, tipo de planilla</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 6</div>
+<p class="h1" contenteditable="true">BOT: REGISTRO NOVEDADES IESS</p>
+<p class="h3 spacer" contenteditable="true">Generación de novedades en la página del IESS</p>
+<p class="body spacer" contenteditable="true">Funciones principales</p>
+<p class="body" contenteditable="true">Registro de novedad + Reporte en Excel</p>
+<p class="body" contenteditable="true">Descarga de novedad + Información adaptada por</p>
+<p class="body" contenteditable="true">Renombrado automático tipo de novedad</p>
+<p class="body" contenteditable="true">Soporte 4 tipos de novedades</p>
+<p class="body" contenteditable="true">Avisos de entrada Avisos de nuevo sueldo</p>
+<p class="body" contenteditable="true">Avisos de salida Avisos variación de sueldo por extras</p>
+<p class="body" contenteditable="true">* La herramienta acepta la adaptación a novedades manejadas por el cliente.</p>
+<p class="body" contenteditable="true">Velocidad de registro</p>
+<p class="h1 spacer" contenteditable="true">1</p>
+<p class="small spacer" contenteditable="true">Minuto por novedad</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 7</div>
+<p class="h1" contenteditable="true">SUITE DE AUTOMATIZACIÓN</p>
+<p class="h2 spacer" contenteditable="true">Productos ofertados por plataforma gubernamental</p>
+<p class="body spacer" contenteditable="true">SUT generación de contratos</p>
+<p class="body" contenteditable="true">SUT descarga extractos de contrato</p>
+<p class="body" contenteditable="true">SUT informe contratos registrados / finalizados</p>
+<p class="body" contenteditable="true">SUT legalización actas de finiquito</p>
+<p class="body" contenteditable="true">SUT generación de acta de finiquito</p>
+<p class="body" contenteditable="true">SUT generación de contratos</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 8</div>
+<p class="h1" contenteditable="true">BOT: DESCARGA EXTRACTOS MDT</p>
+<p class="h3 spacer" contenteditable="true">Descarga masiva de extractos de contrato “Registrados” y “Finalizados”</p>
+<p class="h3" contenteditable="true">Informe avanzado Informe básico</p>
+<p class="body spacer" contenteditable="true">Funciones principales Funciones principales</p>
+<p class="body" contenteditable="true">Descarga de extracto + Reporte en Excel</p>
+<p class="body" contenteditable="true">Renombrado automático Informe contratos registrados</p>
+<p class="body" contenteditable="true">Reporte en Excel +</p>
+<p class="body" contenteditable="true">Información por contrato</p>
+<p class="h3 spacer" contenteditable="true">Velocidad de descarga Velocidad de extracción</p>
+<p class="h1 spacer" contenteditable="true">1 30</p>
+<p class="body spacer" contenteditable="true">Segundos por extracto. Segundos por generación de informe</p>
+<p class="body" contenteditable="true">PDF + Generación de informe de 1100 contratos registrados</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 9</div>
+<p class="h3" contenteditable="true">BOT: DESCARGA EXTRACTOS MDT</p>
+<p class="small spacer" contenteditable="true">Entregables por ejecución:</p>
+<p class="h2 spacer" contenteditable="true">1 2</p>
+<p class="small spacer" contenteditable="true">Extracto de contrato descargado Extracto de contrato renombrado</p>
+<p class="h2 spacer" contenteditable="true">3</p>
+<p class="small spacer" contenteditable="true">CÓDIGO IDENTIFICACIÓN EMPLEADO</p>
+<p class="small" contenteditable="true">0000258353CT 0000000000 ROSADO CEDEÑO YEMBER</p>
+<p class="small" contenteditable="true">FECHA DE INICIO TERMINACIÓN DE CONTRATO FECHA DE REGISTRO</p>
+<p class="h3 spacer" contenteditable="true">01/09/2012 15/09/2012 13:41:09</p>
+<p class="small spacer" contenteditable="true">TIPO DE CONTRATO PERÍODO DE PRUEBA REMUNERACIÓN CARGO DEL TRABAJADOR</p>
+<p class="small" contenteditable="true">CONTRATO INDEFINIDO SI $490.00 OTROS</p>
+<p class="small" contenteditable="true">JORNADA DE CONTRATO CON ES TRABAJADOR</p>
+<p class="small" contenteditable="true">GRUPO OCUPACIONAL</p>
+<p class="small" contenteditable="true">TRABAJO (HORAS) BENEFICIO JUVENIL SUSTITUTO</p>
+<p class="small" contenteditable="true">OCUPACIONES ELEMENTALES 0.00 No No</p>
+<p class="small" contenteditable="true">odallated</p>
+<p class="small" contenteditable="true">emrofnI</p>
+<p class="small" contenteditable="true">ocisáb</p>
+<p class="small" contenteditable="true">emrofnI</p>
+<p class="small" contenteditable="true">Nombre del colaborador Tipo de novedad</p>
+<p class="small" contenteditable="true">Reporte Excel, informe básico &amp; detallado</p>
+<p class="small" contenteditable="true">Información extraída del extracto descargado.</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 10</div>
+<p class="h1" contenteditable="true">BOT: GENERACIÓN CONTRATOS</p>
+<p class="h3 spacer" contenteditable="true">Generación de contratos en la página del Ministerio de Trabajo</p>
+<p class="h3" contenteditable="true">Funciones principales</p>
+<p class="body spacer" contenteditable="true">Registro de contrato +</p>
+<p class="body" contenteditable="true">Reporte en Excel</p>
+<p class="body" contenteditable="true">Descarga de extracto +</p>
+<p class="body" contenteditable="true">Información por contrato</p>
+<p class="body" contenteditable="true">Renombrado automático</p>
+<p class="body" contenteditable="true">Soporte 6 tipos de contrato</p>
+<p class="body" contenteditable="true">A destajo Eventual Indefinido</p>
+<p class="body" contenteditable="true">Por tarea Sector productivo Obra dentro del giro de negocio</p>
+<p class="body" contenteditable="true">* La herramienta acepta la adaptación de los contratos manejados por el cliente.</p>
+<p class="h3 spacer" contenteditable="true">Velocidad de generación</p>
+<p class="h1 spacer" contenteditable="true">45</p>
+<p class="body spacer" contenteditable="true">Segundos por contrato</p>
+<p class="small spacer" contenteditable="true">* Región Oriente: 1 minuto</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 11</div>
+<p class="h3" contenteditable="true">BOT: GENERACIÓN CONTRATOS</p>
+<p class="h2 spacer" contenteditable="true">Entregables por ejecución:</p>
+<p class="h2" contenteditable="true">1 2</p>
+<p class="body spacer" contenteditable="true">Registro contrato plataforma MDT Extracto de contrato renombrado</p>
+<p class="small spacer" contenteditable="true">Nombre del colaborador</p>
+<p class="h3 spacer" contenteditable="true">3 Reporte Excel, informe básico &amp; avanzado</p>
+<p class="small spacer" contenteditable="true">Información extraída del extracto descargado.</p>
+<p class="small" contenteditable="true">CÓDIGO IDENTIFICACIÓN EMPLEADO</p>
+<p class="small" contenteditable="true">0000258353CT 0000000000 ROSADO CEDEÑO YEMBER</p>
+<p class="small" contenteditable="true">FECHA DE INICIO TERMINACIÓN DE CONTRATO FECHA DE REGISTRO</p>
+<p class="h3 spacer" contenteditable="true">01/09/2012 15/09/2012 13:41:09</p>
+<p class="small spacer" contenteditable="true">TIPO DE CONTRATO PERÍODO DE PRUEBA REMUNERACIÓN CARGO DEL TRABAJADOR</p>
+<p class="small" contenteditable="true">CONTRATO INDEFINIDO SI $490.00 OTROS</p>
+<p class="small" contenteditable="true">JORNADA DE CONTRATO CON ES TRABAJADOR</p>
+<p class="small" contenteditable="true">GRUPO OCUPACIONAL</p>
+<p class="small" contenteditable="true">TRABAJO (HORAS) BENEFICIO JUVENIL SUSTITUTO</p>
+<p class="small" contenteditable="true">* Extracto descargado como comprobante de</p>
+<p class="small" contenteditable="true">registro. OCUPACIONES ELEMENTALES 0.00 No No</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 12</div>
+<p class="h1" contenteditable="true">BOT: GENERACIÓN ACTAS DE FINIQUITO</p>
+<p class="h3 spacer" contenteditable="true">Generación de actas de finiquito en la página del Ministerio de Trabajo</p>
+<p class="body spacer" contenteditable="true">Funciones principales</p>
+<p class="body" contenteditable="true">Extracción automática de información,</p>
+<p class="body" contenteditable="true">desde el PDF o Excel generado por el sistema de nómina.</p>
+<p class="body" contenteditable="true">Creación + descarga acta de finiquito.</p>
+<p class="body" contenteditable="true">Renombrado automático</p>
+<p class="body" contenteditable="true">Informe comparativo valores a pagar,</p>
+<p class="body" contenteditable="true">liquidación (Sistema de nómina vs acta de finiquito).</p>
+<p class="h3 spacer" contenteditable="true">Velocidad de generación</p>
+<p class="h1 spacer" contenteditable="true">45</p>
+<p class="body spacer" contenteditable="true">Segundos por acta de finiquito</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 13</div>
+<p class="h1" contenteditable="true">BOT: GENERACIÓN ACTAS DE FINIQUITO</p>
+<p class="h3 spacer" contenteditable="true">Entregables por ejecución:</p>
+<p class="body spacer" contenteditable="true">Generación y descarga del acta de</p>
+<p class="h2 spacer" contenteditable="true">1 2</p>
+<p class="body spacer" contenteditable="true">Acta de finiquito renombrada</p>
+<p class="body" contenteditable="true">finiquito</p>
+<p class="small spacer" contenteditable="true">Nombre del colaborador</p>
+<p class="body spacer" contenteditable="true">3 Reporte Excel, comparativo</p>
+<p class="small spacer" contenteditable="true">Valor a pagar según el PDF generado por el sistema de nómina</p>
+<p class="small" contenteditable="true">vs acta de finiquito descargada.</p>
+<p class="body spacer" contenteditable="true">NOMBRE CEDULA LIQUIDACIÓN ACTA FINIQUITO DIFERENCIA</p>
+<p class="body" contenteditable="true">ROSADO CEDEÑO YEMBER ANDRES 0000000000 $438.91 $438.91 $0.00</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 14</div>
+<p class="h1" contenteditable="true">BOT: REGISTRO ACTAS DE FINIQUITO</p>
+<p class="body spacer" contenteditable="true">Registro masivo de Actas de finiquito “Pendientes”</p>
+<p class="body" contenteditable="true">Registro Actas de finiquito Informe básico</p>
+<p class="body" contenteditable="true">Funciones principales Funciones principales</p>
+<p class="body" contenteditable="true">Reporte en Excel</p>
+<p class="body" contenteditable="true">Registro de actas de finiquito y Actas de finiquito pendientes o</p>
+<p class="body" contenteditable="true">comprobante de pago. Actas de finiquito registradas</p>
+<p class="body" contenteditable="true">Reporte en Excel</p>
+<p class="body" contenteditable="true">Actas de finiquito registradas</p>
+<p class="body" contenteditable="true">Velocidad de generación Velocidad de extracción</p>
+<p class="h1 spacer" contenteditable="true">6 10</p>
+<p class="body spacer" contenteditable="true">Segundos por acta de finiquito Segundos por generación de informe</p>
+<p class="body" contenteditable="true">registrada. de 370 actas de finiquito registradas</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 15</div>
+<p class="h2" contenteditable="true">BOT: REGISTRO ACTAS DE FINIQUITO</p>
+<p class="h2" contenteditable="true">Entregables por ejecución:</p>
+<p class="h3 spacer" contenteditable="true">Reporte Excel, informe básico,</p>
+<p class="h2 spacer" contenteditable="true">1</p>
+<p class="body spacer" contenteditable="true">Actas de finiquito pendientes o actas de finiquito registradas.</p>
+<p class="body" contenteditable="true">CÓDIGO IDENTIFICACIÓN EMPLEADO FECHA INICIO TERMINACIÓN DE CONTRATO FECHA DE REGISTRO</p>
+<p class="body" contenteditable="true">14827601ACF 0000000000 ROSADO CEDEÑO YEMBER ANDRES 20/10/2025 18/01/2026 20/01/2026 23:56:20</p>
+<p class="h2 spacer" contenteditable="true">2</p>
+<p class="body spacer" contenteditable="true">Registro acta de finiquito &amp; comprobante de pago.</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 16</div>
+<p class="h1" contenteditable="true">MODALIDADES DE INVERSIÓN</p>
+<p class="body spacer" contenteditable="true">Licencia</p>
+<p class="body" contenteditable="true">Costo mensual</p>
+<p class="small spacer" contenteditable="true">Uso + mantenimiento mensual</p>
+<p class="h3 spacer" contenteditable="true">$ 300</p>
+<p class="small spacer" contenteditable="true">Adquiera el software para uso ilimitado en su propia infraestructura.</p>
+<p class="small" contenteditable="true">Ideal para alto volumen transaccional y seguridad de datos</p>
+<p class="body spacer" contenteditable="true">¡Transacciones ilimitadas!</p>
+<p class="small spacer" contenteditable="true">+ IVA</p>
+<p class="body spacer" contenteditable="true">¡Soporte técnico prioritario!</p>
+<p class="small spacer" contenteditable="true">BOTS:</p>
+<p class="body spacer" contenteditable="true">IESS extracción comprobantes $ 30.00</p>
+<p class="body" contenteditable="true">IESS extracción de novedades $ 30.00 ¡Oferta limitada! 15% OFF</p>
+<p class="body" contenteditable="true">IESS extracción de planillas $ 30.00</p>
+<p class="body" contenteditable="true">IESS extracción novedades nómina $ 30.00</p>
+<p class="h3 spacer" contenteditable="true">Pack completo empresarial</p>
+<p class="body spacer" contenteditable="true">IESS registro novedades $ 40.00</p>
+<p class="h3 spacer" contenteditable="true">$ 255</p>
+<p class="body spacer" contenteditable="true">SUT generación de contratos $ 40.00</p>
+<p class="body" contenteditable="true">SUT descarga extractos de contratos $ 30.00</p>
+<p class="small spacer" contenteditable="true">+ IVA Adquisición de 9 bots</p>
+<p class="body spacer" contenteditable="true">SUT generación actas de finiquito $ 40.00</p>
+<p class="body" contenteditable="true">¡Costo mensual de $28.33 por herramienta!</p>
+<p class="body" contenteditable="true">SUT registro actas de finiquito $ 30.00</p>
+<p class="small spacer" contenteditable="true">* A partir de la adquisición de 5 productos se obtiene un descuento del 10% sobre el</p>
+<p class="small" contenteditable="true">valor de la facturación.</p>
+</div>
+
+<div class="page">
+<div class="page-label">P&aacute;gina 17</div>
+<p class="h2" contenteditable="true">¡Contáctanos!</p>
+<p class="h3 spacer" contenteditable="true">info@kapisg.com</p>
+<p class="h3" contenteditable="true">0986223766</p>
+<p class="body spacer" contenteditable="true">Procesos inteligentes,</p>
+<p class="body" contenteditable="true">resultados extraordinarios</p>
+</div>
+
+</body>
+</html>
